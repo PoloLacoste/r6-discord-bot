@@ -3,6 +3,7 @@ import { Command, CommandMessage } from "@typeit/discord";
 import { R6Service } from 'r6-api-cacher';
 
 import { R6UsernameService } from '../services/r6-username.service';
+import { formatMessage } from '../utils';
 
 export abstract class Level {
 
@@ -18,12 +19,11 @@ export abstract class Level {
     if (username != null) {
       const level = await this.r6Service.getLevelByUsername(platform, username);
 
-      const levelStr = `⭐ Level : ${level.level}`;
-      const lootbox = `📦 LootBox : ${level.lootboxProbability.percent}`;
-
-      let str = `your level :\n${levelStr}\n${lootbox}`;
-
-      command.reply(str);
+      command.reply(formatMessage([
+        'your level :',
+        `⭐ Level : ${level.level}`,
+        `📦 LootBox : ${level.lootboxProbability.percent}`
+      ]));
     }
     else {
       command.reply(`you haven't set your rainbow six siege username yet !`);
