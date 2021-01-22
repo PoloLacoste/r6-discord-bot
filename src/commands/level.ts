@@ -18,10 +18,10 @@ export abstract class Level {
     if (username != null) {
       const level = await this.r6Service.getLevelByUsername(platform, username);
 
-      let str = `your level :
-      ⭐ Level : ${level.level}
-      📦 LootBox : ${level.lootboxProbability.percent}
-      `;
+      const levelStr = `⭐ Level : ${level.level}`;
+      const lootbox = `📦 LootBox : ${level.lootboxProbability.percent}`;
+
+      let str = `your level :\n${levelStr}\n${lootbox}`;
 
       command.reply(str);
     }
