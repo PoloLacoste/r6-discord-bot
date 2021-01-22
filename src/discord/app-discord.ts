@@ -1,11 +1,11 @@
 import { Discord} from "@typeit/discord";
 import * as Path from "path";
-import { Stats } from "../commands/stats";
+import { Id } from "../commands/id";
 
 @Discord("!", {
   import: [
     Path.join(__dirname, "..", "commands", "*.ts"),
-    Stats
+    Id
   ]
 })
 abstract class AppDiscord {
