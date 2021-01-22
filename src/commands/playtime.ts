@@ -19,12 +19,12 @@ export abstract class Playtime {
     if (username != null) {
       const playtime = await this.r6Service.getPlaytimeByUsername(platform, username);
 
-      let str = `your playtime :
-      ⏱️ General : ${humanizeDuration(playtime.general * 1000)}
-      🎮 Casual : ${humanizeDuration(playtime.casual * 1000)}
-      📋 Ranked : ${humanizeDuration(playtime.ranked * 1000)}
-      ✈️ Discovery : ${humanizeDuration(playtime.discovery * 1000)}
-      `;
+      const general = `⏱️ General : ${humanizeDuration(playtime.general * 1000)}`;
+      const casual = `🎮 Casual : ${humanizeDuration(playtime.casual * 1000)}`;
+      const ranked = `📋 Ranked : ${humanizeDuration(playtime.ranked * 1000)}`;
+      const discovery = `✈️ Discovery : ${humanizeDuration(playtime.discovery * 1000)}`;
+
+      let str = `your playtime :\n${general}\n${casual}\n${ranked}\n${discovery}`;
 
       command.reply(str);
     }
