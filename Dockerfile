@@ -10,14 +10,14 @@ COPY . .
 
 RUN npm run build
 
-RUN npm i -g nexe
-
-RUN nexe dist/index.js
-
-FROM alpine:3.13 as production
+FROM node:14-alpine as production
 
 WORKDIR /usr/src/app
 
-COPY --from=builder /usr/src/app/r6-discord-bot .
+COPY . .
 
-CMD ["./app"]
+RUN npm install --only=production
+
+COPY --from=builder /usr/src/app/dist ./dist
+
+CMD ["node", "dist/index"]
