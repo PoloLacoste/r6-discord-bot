@@ -4,20 +4,26 @@ import { R6Service } from 'r6-api-cacher';
 
 import { R6UsernameService } from '../services/r6-username.service';
 
-export abstract class Id {
+export abstract class Level {
 
   private readonly r6Service = container.resolve(R6Service);
   private readonly r6UsernameService = container.resolve(R6UsernameService);
 
-  @Command("id :platform")
-  async id(command: CommandMessage) {
+  @Command("level :platform")
+  async playtime(command: CommandMessage) {
 
     const platform = command.args.platform || 'uplay';
     const username = await this.r6UsernameService.getR6Username(command.author.username);
 
-    if(username != null) {
-      const id = await this.r6Service.getId(platform, username);
-      command.reply(`your rainbow six siege id is : ${id}`);
+    if (username != null) {
+      const level = await this.r6Service.getLevelByUsername(platform, username);
+
+      let str = `your level :
+      ⭐ Level : ${level.level}
+      📦 LootBox : ${level.lootboxProbability.percent}
+      `;
+
+      command.reply(str);
     }
     else {
       command.reply(`you haven't set your rainbow six siege username yet !`);

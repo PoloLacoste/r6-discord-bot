@@ -1,6 +1,10 @@
+import "reflect-metadata";
 import { Client } from "@typeit/discord";
+import { initServices } from "./services/services";
 
 require('dotenv').config()
+
+initServices()
 
 async function start() {
   const client = new Client({
