@@ -10,14 +10,14 @@ COPY . .
 
 RUN npm run build
 
-FROM node:14-alpine as production
+RUN npm install -g pkg
+
+RUN pkg --target node14-linux-x64 --output app/r6-discord-bot dist/index.js
+
+FROM alpine:3.13 as production
 
 WORKDIR /usr/src/app
 
-COPY . .
+COPY --from=builder /usr/src/app/app .
 
-RUN npm install --only=production
-
-COPY --from=builder /usr/src/app/dist ./dist
-
-CMD ["node", "dist/index"]
+CMD [ "/usr/src/app/r6-discord-bot" ]
