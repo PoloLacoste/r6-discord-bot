@@ -21,9 +21,9 @@ export abstract class Playtime {
 
       let str = `your playtime :
       ⏱️ General : ${humanizeDuration(playtime.general * 1000)}
-      ⏱️ Casual : ${humanizeDuration(playtime.casual * 1000)}
-      ⏱️ Ranked : ${humanizeDuration(playtime.ranked * 1000)}
-      ⏱️ Discovery : ${humanizeDuration(playtime.discovery * 1000)}
+      🎮 Casual : ${humanizeDuration(playtime.casual * 1000)}
+      📋 Ranked : ${humanizeDuration(playtime.ranked * 1000)}
+      ✈️ Discovery : ${humanizeDuration(playtime.discovery * 1000)}
       `;
 
       command.reply(str);
