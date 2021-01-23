@@ -1,5 +1,5 @@
 import { container } from "tsyringe";
-import { CacheService, MongoDatabase, R6Service } from "r6-api-cacher";
+import { CacheService, MongoDatabase, R6Service } from "r6-cacher";
 
 export function initServices(): void {
 

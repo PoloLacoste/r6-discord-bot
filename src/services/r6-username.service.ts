@@ -1,5 +1,5 @@
 import { container, singleton } from "tsyringe";
-import { CacheService } from 'r6-api-cacher';
+import { CacheService } from 'r6-cacher';
 
 @singleton()
 export class R6UsernameService {
