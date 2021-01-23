@@ -1,0 +1,33 @@
+version: '2.1'
+services:
+
+  mongo:
+    image: mongo:4.4.3-bionic
+    container_name: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: r6
+  
+  redis:
+    image: redis:6.0.9-alpine
+    container_name: redis
+    restart: always
+
+  r6-discord-bot:
+    restart: always 
+    image: pololacoste/r6-discord-bot
+    container_name: r6-discord-bot
+    environment: 
+      - EMAIL=${EMAIL}
+      - PASSWORD=${PASSWORD}
+      - TOKEN=${TOKEN}
+      - MONGO_URL=mongodb://root:password@mongo:27017/?ssl=false
+      - REDIS_URL=redis://redis:6379
+      - CACHING=true
+    depends_on: 
+      - mongo
+      - redis
+
+  
