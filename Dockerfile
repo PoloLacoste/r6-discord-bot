@@ -21,4 +21,5 @@ WORKDIR /usr/src/app
 COPY --from=builder /usr/src/app/app .
 
 RUN apk add --no-cache build-base
+
 ENTRYPOINT ["/usr/src/app/r6-discord-bot"]
