@@ -1,6 +1,6 @@
 import { container } from 'tsyringe';
 import { Command, CommandMessage } from "@typeit/discord";
-import { R6Service } from 'r6-api-cacher';
+import { R6Service } from 'r6-cacher';
 const humanizeDuration = require("humanize-duration");
 
 import { R6UsernameService } from '../services/r6-username.service';
