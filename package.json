@@ -33,7 +33,7 @@
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "humanize-duration": "^3.25.1",
-    "r6-cacher": "^1.0.0",
+    "r6-cacher": "^1.0.2",
     "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.4.0"
   }
