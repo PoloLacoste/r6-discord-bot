@@ -14,7 +14,7 @@ FROM node:14-alpine as production
 
 WORKDIR /usr/src/app
 
-COPY . .
+COPY ./package.json ./
 
 RUN npm install --only=production
 
