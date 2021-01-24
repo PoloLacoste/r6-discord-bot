@@ -1,6 +1,6 @@
 import { container } from 'tsyringe';
 import { Command, CommandMessage } from "@typeit/discord";
-import { R6Service } from 'r6-cacher';
+import { R6Service } from 'r6-api-caching';
 
 import { R6UsernameService } from '../services/r6-username.service';
 
