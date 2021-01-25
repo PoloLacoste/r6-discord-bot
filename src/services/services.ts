@@ -1,8 +1,14 @@
 import { container } from "tsyringe";
 import { CacheService, MongoDatabase, R6Service } from "r6-api-caching";
+import { Logger } from "tslog";
 
 export function initServices(): void {
 
+  container.registerInstance(Logger, new Logger({
+    name: "R6 discord bot",
+    displayFunctionName: false,
+    displayFilePath: "hidden"
+  }));
   container.registerInstance(CacheService, new CacheService(process.env.REDIS_URL));
   container.registerInstance(MongoDatabase, new MongoDatabase(process.env.MONGO_URL));
   container.registerInstance(R6Service,
