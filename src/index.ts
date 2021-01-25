@@ -1,12 +1,17 @@
 import "reflect-metadata";
-import { Client } from "@typeit/discord";
+import { container } from 'tsyringe';
+import { Client } from '@typeit/discord';
+import { Logger } from 'tslog';
+
+require('dotenv').config();
+
 import { initServices } from "./services/services";
+import { exit } from "process";
 
-require('dotenv').config()
-
-initServices()
+initServices();
 
 async function start() {
+  const logger = container.resolve(Logger);
   const client = new Client({
     classes: [
       `${__dirname}/discord/*.ts`,
@@ -16,7 +21,16 @@ async function start() {
     variablesChar: ":"
   });
 
-  await client.login(process.env.TOKEN);
+  logger.info("Connection...");
+
+  try {
+    await client.login(process.env.TOKEN);
+    logger.info("Connected !");
+  }
+  catch(e) {
+    logger.error("Connection error, invalid token.");
+    exit(1);
+  }
 }
 
 start();

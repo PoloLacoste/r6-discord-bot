@@ -1,5 +1,3 @@
-import { strict } from "assert";
-
 export function checkArgs(args, required): boolean {
   for (let el of required) {
     if (el in args) {

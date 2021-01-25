@@ -1,4 +1,4 @@
-import { Discord } from "@typeit/discord";
+import { Discord } from '@typeit/discord';
 import * as Path from "path";
 
 import { Id } from "../commands/id";
