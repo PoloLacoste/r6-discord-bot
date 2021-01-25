@@ -6,6 +6,7 @@ import { Level } from "../commands/level";
 import { Playtime } from "../commands/playtime";
 import { R6Username } from "../commands/r6-username";
 import { Rank } from "../commands/rank";
+import { Stats } from "../commands/stats";
 
 @Discord("/", {
   import: [
@@ -14,7 +15,8 @@ import { Rank } from "../commands/rank";
     R6Username,
     Playtime,
     Level,
-    Rank
+    Rank,
+    Stats
   ]
 })
 abstract class AppDiscord {
