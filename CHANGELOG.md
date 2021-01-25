@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0 - 25/01/2021
+
+General stats.
+
+### Added
+
+- General stats with command `stats`
+
 ## 1.1.0 - 25/01/2021
 
 Logging improvement.
