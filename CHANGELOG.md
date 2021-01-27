@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1 - 27/01/2021
+
+Updated r6-api-caching version (fixed caching in mongodb).
+
 ## 1.2.0 - 25/01/2021
 
 General stats.
