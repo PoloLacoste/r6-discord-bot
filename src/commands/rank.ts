@@ -12,7 +12,7 @@ export abstract class Rank {
   private readonly r6UsernameService = container.resolve(R6UsernameService);
   private readonly logger = container.resolve(Logger);
 
-  private static readonly lastSeason = "20";
+  private static readonly lastSeason = "21";
 
   @Command("rank :season :platform")
   async rank(command: CommandMessage) {
