@@ -12,17 +12,17 @@ export class R6UsernameService {
     this.caching = Boolean(JSON.parse(process.env.CACHING || "false"))
   }
 
-  async getR6Username(discordUsername: string): Promise<string> {
+  async getR6Username(id: string): Promise<string> {
     if(this.caching && this.cacheService.isOnline()) {
-      return await this.cacheService.getId(discordUsername);
+      return await this.cacheService.getId(id);
     }
-    return this.r6Usernames.get(discordUsername);
+    return this.r6Usernames.get(id);
   }
 
-  async setR6Username(discordUsername: string, r6Username: string): Promise<void> {
+  async setR6Username(id: string, r6Username: string): Promise<void> {
     if(this.caching && this.cacheService.isOnline()) {
-      return await this.cacheService.setId(discordUsername, r6Username);
+      return await this.cacheService.setId(id, r6Username);
     }
-    this.r6Usernames.set(discordUsername, r6Username);
+    this.r6Usernames.set(id, r6Username);
   }
 }
