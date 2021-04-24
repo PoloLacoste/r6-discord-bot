@@ -16,7 +16,7 @@ export abstract class Stats {
   async stats(command: CommandMessage) {
 
     const platform = command.args.platform || 'uplay';
-    const username = await this.r6UsernameService.getR6Username(command.author.username);
+    const username = await this.r6UsernameService.getR6Username(command.author.id);
 
     if (username != null) {
       this.logger.info(`Get stats on ${platform} for ${command.author.username} with username ${username}`);
