@@ -18,7 +18,7 @@ export abstract class Rank {
   async rank(command: CommandMessage) {
 
     const platform = command.args.platform || 'uplay';
-    const username = await this.r6UsernameService.getR6Username(command.author.username);
+    const username = await this.r6UsernameService.getR6Username(command.author.id);
 
     const seasonId = command.args.season || Rank.lastSeason;
     

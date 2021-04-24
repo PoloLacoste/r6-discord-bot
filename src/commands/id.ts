@@ -14,7 +14,6 @@ export abstract class Id {
   @Command("id :platform")
   async id(command: CommandMessage) {
 
-    
     const platform = command.args.platform || 'uplay';
     const username = await this.r6UsernameService.getR6Username(command.author.username);
     

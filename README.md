@@ -91,81 +91,81 @@ docker-compose up
 
 ## ⌨️ Bot commands
 
-### /setR6
+### !setR6
 
 This command will link your discord account id with your Rainbow Six Siege username.
 
 Example :
 
 ```
-/setR6 Godly
+!setR6 Godly
 ```
 
-### /getR6
+### !getR6
 
 This command will return the current Rainbow Six Siege username linked to your discord account id.
 
 Example :
 
 ```
-/getR6
+!getR6
 ```
 
-### 🆔 /id
+### 🆔 !id
 
 This command get your unique Rainbow Six Siege player id.
 
 Example :
 
 ```
-/id
+!id
 ```
 
 Optional arguments :
 
 - platform : To specify the platform the account is on (default `uplay`, `uplay` (pc), `xbl` (Xbox Live) or `psn` (PlayStation Network))
 
-### ⭐ /level
+### ⭐ !level
 
 This command will return your current level & lootbox drop chance percentage.
 
 Example :
 
 ```
-/level
+!level
 ```
 
 Optional arguments :
 
 - platform : To specify the platform the account is on (default `uplay`, `uplay` (pc), `xbl` (Xbox Live) or `psn` (PlayStation Network))
 
-### ⌚ /playtime
+### ⌚ !playtime
 
 This command will return your general, casual, ranked and discovery playtime.
 
 Example :
 
 ```
-/playtime
+!playtime
 ```
 
 Optional arguments :
 
 - platform : To specify the platform the account is on (default `uplay`, `uplay` (pc), `xbl` (Xbox Live) or `psn` (PlayStation Network))
 
-### 🏆 /rank
+### 🏆 !rank
 
 This command will return analytics of the current season.
 
 Example :
 
 ```
-/rank
+!rank
 ```
 
 Optional arguments :
 
-- season : To specify the season number (default is `20`, last season)
+- season : To specify the season number (default is `21`, last season)
 - platform : To specify the platform the account is on (default `uplay`, `uplay` (pc), `xbl` (Xbox Live) or `psn` (PlayStation Network))
 
 Seasons reference :
@@ -174,17 +174,18 @@ Seasons reference :
 9: 'Chimera', 10: 'Para Bellum', 11: 'Grim Sky',
 12: 'Wind Bastion', 13: 'Burnt Horizon', 14: 'Phantom Sight',
 15: 'Ember Rise', 16: 'Shifting Tides',  17: 'Void Edge',
-18: 'Steel Wave', 19: 'Shadow Legacy', 20: 'Neon Dawn'
+18: 'Steel Wave', 19: 'Shadow Legacy', 20: 'Neon Dawn',
+21: 'Crimson Heist'
 ```
 
-### 📊 /stats
+### 📊 !stats
 
 This command will return some general analytics of your account (kills, deaths, wins, losses, ...).
 
 Example :
 
 ```
-/stats
+!stats
 ```
 
 Optional arguments :
