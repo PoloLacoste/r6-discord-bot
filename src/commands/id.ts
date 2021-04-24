@@ -15,7 +15,7 @@ export abstract class Id {
   async id(command: CommandMessage) {
 
     const platform = command.args.platform || 'uplay';
-    const username = await this.r6UsernameService.getR6Username(command.author.username);
+    const username = await this.r6UsernameService.getR6Username(command.author.id);
     
     if(username != null) {
       this.logger.info(`Get id on ${platform} for ${command.author.username} with username ${username}`);
