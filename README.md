@@ -80,7 +80,7 @@ You can choose between two different docker files
 Then you can run the docker container :
 
 ```docker
-docker run r6-discord-bot -e EMAIL=[YOUR_EMAIL] -e PASSWORD=[YOUR_PASSWORD]
+docker run r6-discord-bot -e EMAIL=[YOUR_EMAIL] -e PASSWORD=[YOUR_PASSWORD] -e TOKEN=[DISCORD_BOT_TOKEN]
 ```
 
 With docker compose :
