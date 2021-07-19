@@ -34,10 +34,10 @@ Create a `.env` file
 ```ini
 EMAIL=[Rainbow six siege account email]
 PASSWORD=[Rainbow six siege account password]
+TOKEN=[Discord bot token]
 ```
 **Optional**
 ```ini
-TOKEN=[Discord bot token]
 MONGO_URL=[Url of the mongodb instance]
 REDIS_URL=[Url of the redis instance]
 CACHING=[true or false]

@@ -1,12 +1,12 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 import { container } from 'tsyringe';
 import { Client } from '@typeit/discord';
 import { Logger } from 'tslog';
 
 require('dotenv').config();
 
-import { initServices } from "./services/services";
-import { exit } from "process";
+import { initServices } from './services/services';
+import { exit } from 'process';
 
 initServices();
 
@@ -18,17 +18,17 @@ async function start() {
       `${__dirname}/discord/*.js`
     ],
     silent: false,
-    variablesChar: ":"
+    variablesChar: ':'
   });
 
-  logger.info("Connection...");
+  logger.info('Connection...');
 
   try {
     await client.login(process.env.TOKEN);
-    logger.info("Connected !");
+    logger.info('Connected !');
   }
   catch(e) {
-    logger.error("Connection error, invalid token.");
+    logger.error('Connection error, invalid token.');
     exit(1);
   }
 }

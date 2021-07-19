@@ -2,7 +2,7 @@ import { container } from 'tsyringe';
 import { Command, CommandMessage } from '@typeit/discord';
 import { Logger } from 'tslog';
 
-import { checkArgs } from "../utils";
+import { checkArgs } from '../utils';
 import { R6UsernameService } from '../services/r6-username.service';
 
 export abstract class Link {
@@ -10,9 +10,9 @@ export abstract class Link {
   private readonly r6UsernameService = container.resolve(R6UsernameService);
   private readonly logger = container.resolve(Logger);
 
-  @Command("setLink :r6Username")
+  @Command('setLink :r6Username')
   async setLink(command: CommandMessage) {
-    const valid = checkArgs(command.args, ["r6Username"]);
+    const valid = checkArgs(command.args, ['r6Username']);
 
     if (valid) {
       const { r6Username } = command.args;
@@ -25,11 +25,11 @@ export abstract class Link {
       command.reply(`your rainbow six siege username is now : ${r6Username}.`);
     }
     else {
-      command.reply("Invalid command format !");
+      command.reply('Invalid command format !');
     }
   }
 
-  @Command("getLink")
+  @Command('getLink')
   async getLink(command: CommandMessage) {
     const authorId = command.author.id;
     const r6Username = await this.r6UsernameService.getR6Username(authorId);

@@ -12,7 +12,7 @@ export abstract class Stats {
   private readonly r6UsernameService = container.resolve(R6UsernameService);
   private readonly logger = container.resolve(Logger);
 
-  @Command("stats :platform")
+  @Command('stats :platform')
   async stats(command: CommandMessage) {
 
     const platform = command.args.platform || 'uplay';

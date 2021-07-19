@@ -11,7 +11,7 @@ export abstract class Id {
   private readonly r6UsernameService = container.resolve(R6UsernameService);
   private readonly logger = container.resolve(Logger);
 
-  @Command("id :platform")
+  @Command('id :platform')
   async id(command: CommandMessage) {
 
     const platform = command.args.platform || 'uplay';

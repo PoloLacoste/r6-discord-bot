@@ -12,7 +12,7 @@ export abstract class Level {
   private readonly r6UsernameService = container.resolve(R6UsernameService);
   private readonly logger = container.resolve(Logger);
 
-  @Command("level :platform")
+  @Command('level :platform')
   async playtime(command: CommandMessage) {
 
     const platform = command.args.platform || 'uplay';

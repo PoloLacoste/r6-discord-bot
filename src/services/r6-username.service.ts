@@ -1,4 +1,4 @@
-import { container, singleton } from "tsyringe";
+import { container, singleton } from 'tsyringe';
 import { CacheService } from 'r6-api-caching';
 
 @singleton()
@@ -9,7 +9,7 @@ export class R6UsernameService {
   private readonly r6Usernames = new Map<string, string>();
 
   constructor() {
-    this.caching = Boolean(JSON.parse(process.env.CACHING || "false"))
+    this.caching = Boolean(JSON.parse(process.env.CACHING || 'false'))
   }
 
   async getR6Username(id: string): Promise<string> {

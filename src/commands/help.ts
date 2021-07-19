@@ -6,7 +6,7 @@ export abstract class Help {
 
   private readonly logger = container.resolve(Logger);
 
-  @Command("help")
+  @Command('help')
   async help(command: CommandMessage) {
     this.logger.info(`Sent help message to ${command.author.username}`);
 
@@ -22,12 +22,12 @@ export abstract class Help {
           },
           {
             name: 'Support',
-            value: '[Click here](https://github.com/PoloLacoste/r6-discord-bot) to discuss with creator of the bot'
+            value: '[Click here](https://github.com/PoloLacoste/r6-discord-bot) to discuss with the creator of the bot'
           },
         ],
         timestamp: new Date(),
         footer: {
-          text: "R6 Discord bot"
+          text: 'R6 Discord bot'
         }
       }
     });

@@ -12,9 +12,9 @@ export abstract class Rank {
   private readonly r6UsernameService = container.resolve(R6UsernameService);
   private readonly logger = container.resolve(Logger);
 
-  private static readonly lastSeason = "22";
+  private static readonly lastSeason = '22';
 
-  @Command("rank :season :platform")
+  @Command('rank :season :platform')
   async rank(command: CommandMessage) {
 
     const platform = command.args.platform || 'uplay';
@@ -27,11 +27,12 @@ export abstract class Rank {
 
       const rank = await this.r6Service.getRankByUsername(platform, username);
       const season = rank.seasons[seasonId];
-      const region = season.regions.emea;
+      const boards = season.regions.emea.boards;
+      const region = boards[Object.keys(boards)[0]];
 
       command.reply(formatMessage([
         'your rank :',
-        `Season : ${season.name}`,
+        `Season : ${season.seasonName}`,
         `💀 Kills : ${region.kills}`,
         `☠️ Deaths : ${region.deaths}`,
         `🏆 Wins : ${region.wins}`,

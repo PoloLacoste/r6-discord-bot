@@ -1,14 +1,14 @@
 import { Discord } from '@typeit/discord';
 
 import { Help } from '../commands/help';
-import { Id } from "../commands/id";
-import { Level } from "../commands/level";
-import { Playtime } from "../commands/playtime";
-import { Link } from "../commands/link";
-import { Rank } from "../commands/rank";
-import { Stats } from "../commands/stats";
+import { Id } from '../commands/id';
+import { Level } from '../commands/level';
+import { Playtime } from '../commands/playtime';
+import { Link } from '../commands/link';
+import { Rank } from '../commands/rank';
+import { Stats } from '../commands/stats';
 
-@Discord("!", {
+@Discord('!', {
   import: [
     Help,
     Id,
