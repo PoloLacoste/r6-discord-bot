@@ -175,7 +175,7 @@ Seasons reference :
 12: 'Wind Bastion', 13: 'Burnt Horizon', 14: 'Phantom Sight',
 15: 'Ember Rise', 16: 'Shifting Tides',  17: 'Void Edge',
 18: 'Steel Wave', 19: 'Shadow Legacy', 20: 'Neon Dawn',
-21: 'Crimson Heist'
+21: 'Crimson Heist', 22: 'North Star'
 ```
 
 ### 📊 !stats
