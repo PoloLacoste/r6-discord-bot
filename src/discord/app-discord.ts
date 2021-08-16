@@ -7,6 +7,7 @@ import { Playtime } from '../commands/playtime';
 import { Link } from '../commands/link';
 import { Rank } from '../commands/rank';
 import { Stats } from '../commands/stats';
+import { Status } from '../commands/status';
 
 @Discord('!', {
   import: [
@@ -16,7 +17,8 @@ import { Stats } from '../commands/stats';
     Playtime,
     Level,
     Rank,
-    Stats
+    Stats,
+    Status,
   ]
 })
 abstract class AppDiscord {
