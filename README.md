@@ -192,4 +192,14 @@ Optional arguments :
 
 - platform : To specify the platform the account is on (default `uplay`, `uplay` (pc), `xbl` (Xbox Live) or `psn` (PlayStation Network))
 
+### 🟢 !status
+
+This command will return the status of all the servers.
+
+Example :
+
+```
+!status
+```
+
 ## 🌟 You are all set! You have a problem ? Please open an issue
