@@ -22,6 +22,12 @@ export abstract class Stats {
       this.logger.info(`Get stats on ${platform} for ${command.author.username} with username ${username}`);
 
       const stats = await this.r6Service.getStatsByUsername(platform, username);
+
+      if (!stats) {
+        command.reply(`there is no stats data with your username !`);
+        return;
+      }
+
       const general = stats.pvp.general;
 
       command.reply(formatMessage([

@@ -12,32 +12,56 @@ export abstract class Rank {
   private readonly r6UsernameService = container.resolve(R6UsernameService);
   private readonly logger = container.resolve(Logger);
 
-  private static readonly lastSeason = '22';
-
-  @Command('rank :season :platform')
+  @Command('rank :season :region :platform')
   async rank(command: CommandMessage) {
 
+    const regionId = command.args.region || 'emea';
     const platform = command.args.platform || 'uplay';
     const username = await this.r6UsernameService.getR6Username(command.author.id);
 
-    const seasonId = command.args.season || Rank.lastSeason;
+    let seasonId = command.args.season || -1;
+    const getLastSeason = seasonId === -1;
     
     if (username != null) {
-      this.logger.info(`Get season ${seasonId} on ${platform} for ${command.author.username} with username ${username}`);
+      const seasonText = getLastSeason ? 'latest season' : `season ${seasonId}`;
+      this.logger.info(`Get ${seasonText} on ${platform} for ${command.author.username} with username ${username}`);
 
       const rank = await this.r6Service.getRankByUsername(platform, username);
+
+      if (!rank) {
+        command.reply(`there is no rank data with your username !`);
+        return;
+      }
+
+      // if there a no specified season id
+      // get the last one
+      if (getLastSeason) {
+        const seasonIds = Object.keys(rank.seasons);
+        seasonId = seasonIds[seasonIds.length - 1];
+      }
       const season = rank.seasons[seasonId];
-      const boards = season.regions.emea.boards;
-      const region = boards[Object.keys(boards)[0]];
+      if (!season) {
+        command.reply(`there is no rank data for this season with your username !`);
+        return;
+      }
+
+      const region = season.regions[regionId];
+      if (!region) {
+        command.reply(`there is no rank data for this season and region with your username !`);
+        return;
+      }
+
+      const boards = region.boards;
+      const board = boards[Object.keys(boards)[0]];
 
       command.reply(formatMessage([
         'your rank :',
         `Season : ${season.seasonName}`,
-        `💀 Kills : ${region.kills}`,
-        `☠️ Deaths : ${region.deaths}`,
-        `🏆 Wins : ${region.wins}`,
-        `😭 Losses : ${region.losses}`,
-        `📘 MMR : ${region.current.mmr}`
+        `💀 Kills : ${board.kills}`,
+        `☠️ Deaths : ${board.deaths}`,
+        `🏆 Wins : ${board.wins}`,
+        `😭 Losses : ${board.losses}`,
+        `📘 MMR : ${board.current.mmr}`
       ]));
     }
     else {

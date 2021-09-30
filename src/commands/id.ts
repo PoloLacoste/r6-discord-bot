@@ -21,6 +21,11 @@ export abstract class Id {
       this.logger.info(`Get id on ${platform} for ${command.author.username} with username ${username}`);
       
       const id = await this.r6Service.getId(platform, username);
+
+      if (!id) {
+        command.reply('could not find your rainbox six siege id !');
+      }
+
       command.reply(`your rainbow six siege id is : ${id}`);
     }
     else {

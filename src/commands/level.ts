@@ -23,6 +23,11 @@ export abstract class Level {
 
       const level = await this.r6Service.getLevelByUsername(platform, username);
 
+      if (!level) {
+        command.reply(`there is no level data with your username !`);
+        return;
+      }
+
       command.reply(formatMessage([
         'your level :',
         `⭐ Level : ${level.level}`,
