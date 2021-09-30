@@ -24,6 +24,11 @@ export abstract class Playtime {
 
       const playtime = await this.r6Service.getPlaytimeByUsername(platform, username);
 
+      if (!playtime) {
+        command.reply(`there is no playtime data with your username !`);
+        return;
+      }
+
       command.reply(formatMessage([
         'your playtime :',
         `🤖 PVE General : ${humanizeDuration(playtime.pve.general * 1000)}`,

@@ -91,24 +91,24 @@ docker-compose up
 
 ## ⌨️ Bot commands
 
-### !setR6
+### !setLink
 
 This command will link your discord account id with your Rainbow Six Siege username.
 
 Example :
 
 ```
-!setR6 Godly
+!setLink Godly
 ```
 
-### !getR6
+### !getLink
 
 This command will return the current Rainbow Six Siege username linked to your discord account id.
 
 Example :
 
 ```
-!getR6
+!getLink
 ```
 
 ### 🆔 !id
@@ -165,8 +165,9 @@ Example :
 
 Optional arguments :
 
-- season : To specify the season number (default is `21`, last season)
-- platform : To specify the platform the account is on (default `uplay`, `uplay` (pc), `xbl` (Xbox Live) or `psn` (PlayStation Network))
+- season : To specify the season number (default is the last season)
+- region : To specify the region (default `emea`, can be `emea` (Europe, Middle East and Africa), `ncsa` (North, Central and South America) or `apac` (Asia Pacific))
+- platform : To specify the platform the account is on (default `uplay`, can be `uplay` (PC), `xbl` (Xbox Live) or `psn` (PlayStation Network))
 
 Seasons reference :
 ```js
@@ -175,7 +176,7 @@ Seasons reference :
 12: 'Wind Bastion', 13: 'Burnt Horizon', 14: 'Phantom Sight',
 15: 'Ember Rise', 16: 'Shifting Tides',  17: 'Void Edge',
 18: 'Steel Wave', 19: 'Shadow Legacy', 20: 'Neon Dawn',
-21: 'Crimson Heist', 22: 'North Star'
+21: 'Crimson Heist', 22: 'North Star', 23: 'Crystal Guard'
 ```
 
 ### 📊 !stats

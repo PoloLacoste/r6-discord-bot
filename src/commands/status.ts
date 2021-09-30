@@ -11,9 +11,15 @@ export abstract class Status {
 
   @Command('status')
   async status(command: CommandMessage) {
-    this.logger.info(`Sent server status message to ${command.author.username}`);
+    this.logger.info(`Get servers status by ${command.author.username}`);
 
     const serverStatus = await this.r6Service.getServersStatus();
+
+    if (!serverStatus) {
+      command.reply(`could not fetch servers status data !`);
+      return;
+    }
+
     const response = ['server status :'];
 
     for (const server of serverStatus) {
