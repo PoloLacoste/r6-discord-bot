@@ -1,6 +1,6 @@
 {
   "name": "r6-discord-bot",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Rainbow Six Siege Discord bot",
   "main": "src/index.ts",
   "scripts": {
