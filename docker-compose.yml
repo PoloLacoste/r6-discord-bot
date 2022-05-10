@@ -9,15 +9,11 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
       MONGO_INITDB_DATABASE: r6
-    ports:
-      - 27017:27017
   
   redis:
     image: redis:7.0.0-alpine
     container_name: redis
     restart: unless-stopped
-    ports:
-      - 6379:6379
 
   r6-discord-bot:
     restart: unless-stopped 
