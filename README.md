@@ -35,6 +35,8 @@ Create a `.env` file
 EMAIL=[Rainbow six siege account email]
 PASSWORD=[Rainbow six siege account password]
 TOKEN=[Discord bot token]
+CLIENT_ID=[Discord bot application id]
+GUILD_ID=[Discord server id]
 ```
 **Optional**
 ```ini
@@ -80,7 +82,8 @@ You can choose between two different docker files
 Then you can run the docker container :
 
 ```docker
-docker run r6-discord-bot -e EMAIL=[YOUR_EMAIL] -e PASSWORD=[YOUR_PASSWORD] -e TOKEN=[DISCORD_BOT_TOKEN]
+docker run r6-discord-bot -e EMAIL=[YOUR_EMAIL] -e PASSWORD=[YOUR_PASSWORD] \
+-e TOKEN=[DISCORD_BOT_TOKEN] -e CLIENT_ID=[APPLICATION_CLIENT_ID] -e GUILD_ID=[SERVER_ID]
 ```
 
 With docker compose :
@@ -91,76 +94,80 @@ docker-compose up
 
 ## ⌨️ Bot commands
 
-### !setLink
+### /link
+
+**Subcommands:**
+
+#### set
 
 This command will link your discord account id with your Rainbow Six Siege username.
 
 Example :
 
 ```
-!setLink Godly
+/link set Godly
 ```
 
-### !getLink
+#### get
 
 This command will return the current Rainbow Six Siege username linked to your discord account id.
 
 Example :
 
 ```
-!getLink
+/link get
 ```
 
-### 🆔 !id
+### 🆔 /id
 
 This command get your unique Rainbow Six Siege player id.
 
 Example :
 
 ```
-!id
+/id
 ```
 
 Optional arguments :
 
 - platform : To specify the platform the account is on (default `uplay`, `uplay` (pc), `xbl` (Xbox Live) or `psn` (PlayStation Network))
 
-### ⭐ !level
+### ⭐ /level
 
 This command will return your current level & lootbox drop chance percentage.
 
 Example :
 
 ```
-!level
+/level
 ```
 
 Optional arguments :
 
 - platform : To specify the platform the account is on (default `uplay`, `uplay` (pc), `xbl` (Xbox Live) or `psn` (PlayStation Network))
 
-### ⌚ !playtime
+### ⌚ /playtime
 
 This command will return your general, casual, ranked and discovery playtime.
 
 Example :
 
 ```
-!playtime
+/playtime
 ```
 
 Optional arguments :
 
 - platform : To specify the platform the account is on (default `uplay`, `uplay` (pc), `xbl` (Xbox Live) or `psn` (PlayStation Network))
 
-### 🏆 !rank
+### 🏆 /rank
 
 This command will return analytics of the current season.
 
 Example :
 
 ```
-!rank
+/rank
 ```
 
 Optional arguments :
@@ -176,31 +183,32 @@ Seasons reference :
 12: 'Wind Bastion', 13: 'Burnt Horizon', 14: 'Phantom Sight',
 15: 'Ember Rise', 16: 'Shifting Tides',  17: 'Void Edge',
 18: 'Steel Wave', 19: 'Shadow Legacy', 20: 'Neon Dawn',
-21: 'Crimson Heist', 22: 'North Star', 23: 'Crystal Guard'
+21: 'Crimson Heist', 22: 'North Star', 23: 'Crystal Guard',
+24: 'High Calibre', 25: 'Demon Veil'
 ```
 
-### 📊 !stats
+### 📊 /stats
 
 This command will return some general analytics of your account (kills, deaths, wins, losses, ...).
 
 Example :
 
 ```
-!stats
+/stats
 ```
 
 Optional arguments :
 
 - platform : To specify the platform the account is on (default `uplay`, `uplay` (pc), `xbl` (Xbox Live) or `psn` (PlayStation Network))
 
-### 🟢 !status
+### 🟢 /status
 
 This command will return the status of all the servers.
 
 Example :
 
 ```
-!status
+/status
 ```
 
 ## 🌟 You are all set! You have a problem ? Please open an issue
