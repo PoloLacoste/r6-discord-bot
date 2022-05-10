@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.7.0 - 10/05/2022
+
+- Update r6-api-caching to latest version
+- Refactor commands to use new discord.js api
+- Using slash commands with auto complete and documentation
+- Updated docker container version of nodejs to 16.15.0
+
+## 1.6.0 - 15/12/2021
+
+- Update r6-api-caching for High Calibre
+
 ## 1.5.0 - 06/10/2021
 
 - Update r6-api-caching for Crystal Guard
