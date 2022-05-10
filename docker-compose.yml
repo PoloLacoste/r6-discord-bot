@@ -27,6 +27,8 @@ services:
       - EMAIL=${EMAIL}
       - PASSWORD=${PASSWORD}
       - TOKEN=${TOKEN}
+      - CLIENT_ID=${CLIENT_ID}
+      - GUILD_ID=${GUILD_ID}
       - MONGO_URL=mongodb://root:password@mongo:27017/?ssl=false
       - REDIS_URL=redis://redis:6379
       - CACHING=true
