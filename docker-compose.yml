@@ -2,21 +2,25 @@ version: '2.1'
 services:
 
   mongo:
-    image: mongo:4.4.3-bionic
+    image: mongo:5.0.8-focal
     container_name: mongo
-    restart: always
+    restart: unless-stopped
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
       MONGO_INITDB_DATABASE: r6
+    ports:
+      - 27017:27017
   
   redis:
-    image: redis:6.0.9-alpine
+    image: redis:7.0.0-alpine
     container_name: redis
-    restart: always
+    restart: unless-stopped
+    ports:
+      - 6379:6379
 
   r6-discord-bot:
-    restart: always 
+    restart: unless-stopped 
     image: pololacoste/r6-discord-bot
     container_name: r6-discord-bot
     environment: 

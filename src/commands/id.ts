@@ -1,35 +1,38 @@
-import { Logger } from 'tslog';
-import { container } from 'tsyringe';
-import { Command, CommandMessage } from '@typeit/discord';
-import { R6Service } from 'r6-api-caching';
+import { SlashCommandBuilder } from '@discordjs/builders'
+import { CommandInteraction } from 'discord.js'
+import { Platform, R6Service } from 'r6-api-caching'
+import { Logger } from 'tslog'
+import { container } from 'tsyringe'
 
-import { R6UsernameService } from '../services/r6-username.service';
+import { R6UsernameService } from '../services/r6-username.service'
 
-export abstract class Id {
+const logger = container.resolve(Logger)
+const r6Service = container.resolve(R6Service)
+const r6UsernameService = container.resolve(R6UsernameService)
 
-  private readonly r6Service = container.resolve(R6Service);
-  private readonly r6UsernameService = container.resolve(R6UsernameService);
-  private readonly logger = container.resolve(Logger);
+module.exports = {
+  data: new SlashCommandBuilder()
+    .setName('id')
+    .setDescription('Get game id of the current user')
+    .addStringOption(option =>
+      option.setName('platform')
+        .setDescription('Account platform (uplay, xbl or psn), default "uplay"')),
+  async execute (interaction: CommandInteraction) {
+    const platform = interaction.options.getString('platform') || 'uplay'
+    const username = await r6UsernameService.getR6Username(interaction.user.id)
 
-  @Command('id :platform')
-  async id(command: CommandMessage) {
+    if (username != null) {
+      logger.info(`Get id on ${platform} for ${interaction.user.username} with username ${username}`)
 
-    const platform = command.args.platform || 'uplay';
-    const username = await this.r6UsernameService.getR6Username(command.author.id);
-    
-    if(username != null) {
-      this.logger.info(`Get id on ${platform} for ${command.author.username} with username ${username}`);
-      
-      const id = await this.r6Service.getId(platform, username);
+      const id = await r6Service.getId(platform as Platform, username)
 
       if (!id) {
-        command.reply('could not find your rainbox six siege id !');
+        interaction.reply('Could not find your Rainbow Six Siege id !')
       }
 
-      command.reply(`your rainbow six siege id is : ${id}`);
-    }
-    else {
-      command.reply(`you haven't set your rainbow six siege username yet !`);
+      interaction.reply(`Your Rainbow Six Siege id is : ${id}`)
+    } else {
+      interaction.reply('You haven\'t set your Rainbow Six Siege username yet !')
     }
   }
 }

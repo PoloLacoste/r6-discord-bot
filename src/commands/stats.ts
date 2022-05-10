@@ -1,48 +1,51 @@
-import { container } from 'tsyringe';
-import { Command, CommandMessage } from '@typeit/discord';
-import { R6Service } from 'r6-api-caching';
-import { Logger } from 'tslog';
+import { SlashCommandBuilder } from '@discordjs/builders'
+import { CommandInteraction } from 'discord.js'
+import { Platform, R6Service } from 'r6-api-caching'
+import { Logger } from 'tslog'
+import { container } from 'tsyringe'
 
-import { R6UsernameService } from '../services/r6-username.service';
-import { formatMessage } from '../utils';
+import { R6UsernameService } from '../services/r6-username.service'
+import { formatMessage } from '../utils'
 
-export abstract class Stats {
+const logger = container.resolve(Logger)
+const r6Service = container.resolve(R6Service)
+const r6UsernameService = container.resolve(R6UsernameService)
 
-  private readonly r6Service = container.resolve(R6Service);
-  private readonly r6UsernameService = container.resolve(R6UsernameService);
-  private readonly logger = container.resolve(Logger);
-
-  @Command('stats :platform')
-  async stats(command: CommandMessage) {
-
-    const platform = command.args.platform || 'uplay';
-    const username = await this.r6UsernameService.getR6Username(command.author.id);
+module.exports = {
+  data: new SlashCommandBuilder()
+    .setName('stats')
+    .setDescription('Get game statistics of the current user')
+    .addStringOption(option =>
+      option.setName('platform')
+        .setDescription('Account platform (uplay, xbl or psn), default "uplay"')),
+  async execute (interaction: CommandInteraction) {
+    const platform = interaction.options.getString('platform') || 'uplay'
+    const username = await r6UsernameService.getR6Username(interaction.user.id)
 
     if (username != null) {
-      this.logger.info(`Get stats on ${platform} for ${command.author.username} with username ${username}`);
+      logger.info(`Get stats on ${platform} for ${interaction.user.username} with username ${username}`)
 
-      const stats = await this.r6Service.getStatsByUsername(platform, username);
+      const stats = await r6Service.getStatsByUsername(platform as Platform, username)
 
       if (!stats) {
-        command.reply(`there is no stats data with your username !`);
-        return;
+        interaction.reply('There is no stats data with your username !')
+        return
       }
 
-      const general = stats.pvp.general;
+      const general = stats.pvp.general
 
-      command.reply(formatMessage([
-        'your stats :',
+      interaction.reply(formatMessage([
+        'Your stats :',
         `💀 Kills : ${general.kills}`,
         `🔪 Melee kills : ${general.meleeKills}`,
         `☠️ Deaths : ${general.deaths}`,
         `🤝 Assists : ${general.assists}`,
         `🎯 Headshots : ${general.headshots}`,
         `🏆 Wins : ${general.wins}`,
-        `😭 Losses : ${general.losses}`,
-      ]));
-    }
-    else {
-      command.reply(`you haven't set your rainbow six siege username yet !`);
+        `😭 Losses : ${general.losses}`
+      ]))
+    } else {
+      interaction.reply('You haven\'t set your Rainbow Six Siege username yet !')
     }
   }
 }
