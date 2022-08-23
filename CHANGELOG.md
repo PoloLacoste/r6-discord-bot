@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.7.1 - 23/08/2022
+
+- Update packages to newest versions (r6-api-caching, discord.js)
+- Migrate to new discord.js API
+- Migrate to yarn
+
 ## 1.7.0 - 10/05/2022
 
 - Update r6-api-caching to latest version
