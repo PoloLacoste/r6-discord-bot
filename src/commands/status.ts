@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from '@discordjs/builders'
-import { CommandInteraction } from 'discord.js'
+import { ChatInputCommandInteraction } from 'discord.js'
 import { R6Service } from 'r6-api-caching'
 import { Logger } from 'tslog'
 import { container } from 'tsyringe'
@@ -13,13 +13,15 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('status')
     .setDescription('Show server status'),
-  async execute (interaction: CommandInteraction) {
+  async execute (interaction: ChatInputCommandInteraction) {
+    await interaction.deferReply()
+
     logger.info(`Get servers status by ${interaction.user.username}`)
 
     const serverStatus = await r6Service.getServersStatus()
 
     if (!serverStatus) {
-      interaction.reply('could not fetch servers status data !')
+      interaction.editReply('could not fetch servers status data !')
       return
     }
 
@@ -30,6 +32,6 @@ module.exports = {
       response.push(`${online} : ${server.name}`)
     }
 
-    interaction.reply(formatMessage(response))
+    interaction.editReply(formatMessage(response))
   }
 }

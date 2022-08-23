@@ -1,6 +1,6 @@
 /* eslint-disable no-case-declarations */
 import { SlashCommandBuilder } from '@discordjs/builders'
-import { CommandInteraction } from 'discord.js'
+import { ChatInputCommandInteraction } from 'discord.js'
 import { Logger } from 'tslog'
 import { container } from 'tsyringe'
 
@@ -23,7 +23,7 @@ module.exports = {
     .addSubcommand(command => command
       .setName('get')
       .setDescription('Get current user game account username')),
-  async execute (interaction: CommandInteraction) {
+  async execute (interaction: ChatInputCommandInteraction) {
     switch (interaction.options.getSubcommand()) {
       case 'set':
         const userId = interaction.user.id

@@ -3,7 +3,7 @@ import fs = require('fs')
 import path = require('path')
 import { container } from 'tsyringe'
 import { Logger } from 'tslog'
-import { Client, Intents, Collection } from 'discord.js'
+import { Client, GatewayIntentBits, Collection } from 'discord.js'
 import { REST } from '@discordjs/rest'
 import { Routes } from 'discord-api-types/v9'
 import { exit } from 'process'
@@ -22,7 +22,7 @@ async function start () {
   await initServices()
 
   const logger = container.resolve(Logger)
-  const client = new Client({ intents: [Intents.FLAGS.GUILDS] })
+  const client = new Client({ intents: [GatewayIntentBits.Guilds] })
   client.commands = new Collection()
   const commands = []
 
@@ -36,7 +36,7 @@ async function start () {
     commands.push(command.data.toJSON())
   }
 
-  const rest = new REST({ version: '9' }).setToken(process.env.TOKEN)
+  const rest = new REST({ version: '10' }).setToken(process.env.TOKEN)
 
   try {
     await rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID), { body: commands })
@@ -57,7 +57,7 @@ async function start () {
   }
 
   client.on('interactionCreate', async interaction => {
-    if (!interaction.isCommand()) {
+    if (!interaction.isChatInputCommand()) {
       return
     }
     const command = client.commands.get(interaction.commandName)
