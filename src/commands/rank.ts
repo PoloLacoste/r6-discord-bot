@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from '@discordjs/builders'
-import { CommandInteraction } from 'discord.js'
+import { ChatInputCommandInteraction } from 'discord.js'
 import { Platform, R6Service } from 'r6-api-caching'
 import { Logger } from 'tslog'
 import { container } from 'tsyringe'
@@ -24,7 +24,9 @@ module.exports = {
     .addStringOption(option =>
       option.setName('platform')
         .setDescription('Account platform (uplay, xbl or psn), default "uplay"')),
-  async execute (interaction: CommandInteraction) {
+  async execute (interaction: ChatInputCommandInteraction) {
+    await interaction.deferReply()
+
     const regionId = interaction.options.getString('region') || 'emea'
     const platform = interaction.options.getString('platform') || 'uplay'
     const username = await r6UsernameService.getR6Username(interaction.user.id)
@@ -39,7 +41,7 @@ module.exports = {
       const rank = await r6Service.getRankByUsername(platform as Platform, username)
 
       if (!rank) {
-        interaction.reply('There is no rank data with your username !')
+        interaction.editReply('There is no rank data with your username !')
         return
       }
 
@@ -51,20 +53,20 @@ module.exports = {
       }
       const season = rank.seasons[seasonId]
       if (!season) {
-        interaction.reply('There is no rank data for this season with your username !')
+        interaction.editReply('There is no rank data for this season with your username !')
         return
       }
 
       const region = season.regions[regionId]
       if (!region) {
-        interaction.reply('There is no rank data for this season and region with your username !')
+        interaction.editReply('There is no rank data for this season and region with your username !')
         return
       }
 
       const boards = region.boards
       const board = boards[Object.keys(boards)[0]]
 
-      interaction.reply(formatMessage([
+      interaction.editReply(formatMessage([
         'Your rank :',
         `Season : ${season.seasonName}`,
         `💀 Kills : ${board.kills}`,
@@ -74,7 +76,7 @@ module.exports = {
         `📘 MMR : ${board.current.mmr}`
       ]))
     } else {
-      interaction.reply('You haven\'t set your Rainbow Six Siege username yet !')
+      interaction.editReply('You haven\'t set your Rainbow Six Siege username yet !')
     }
   }
 }

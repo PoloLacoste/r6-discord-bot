@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from '@discordjs/builders'
-import { CommandInteraction } from 'discord.js'
+import { ChatInputCommandInteraction } from 'discord.js'
 import { Platform, R6Service } from 'r6-api-caching'
 import { Logger } from 'tslog'
 import { container } from 'tsyringe'
@@ -18,7 +18,9 @@ module.exports = {
     .addStringOption(option =>
       option.setName('platform')
         .setDescription('Account platform (uplay, xbl or psn), default "uplay"')),
-  async execute (interaction: CommandInteraction) {
+  async execute (interaction: ChatInputCommandInteraction) {
+    await interaction.deferReply()
+
     const platform = interaction.options.getString('platform') || 'uplay'
     const username = await r6UsernameService.getR6Username(interaction.user.id)
 
@@ -28,17 +30,17 @@ module.exports = {
       const level = await r6Service.getLevelByUsername(platform as Platform, username)
 
       if (!level) {
-        interaction.reply('There is no level data with your username !')
+        interaction.editReply('There is no level data with your username !')
         return
       }
 
-      interaction.reply(formatMessage([
+      interaction.editReply(formatMessage([
         'Your level :',
         `⭐ Level : ${level.level}`,
         `📦 LootBox : ${level.lootboxProbability.percent}`
       ]))
     } else {
-      interaction.reply('You haven\'t set your Rainbow Six Siege username yet !')
+      interaction.editReply('You haven\'t set your Rainbow Six Siege username yet !')
     }
   }
 }
