@@ -1,22 +1,22 @@
 {
   "name": "r6-discord-bot",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Rainbow Six Siege Discord bot",
-  "main": "src/index.ts",
-  "scripts": {
-    "start": "tsc && node dist/index.js",
-    "build": "tsc"
+  "author": "PoloLacoste",
+  "license": "MIT",
+  "homepage": "https://github.com/PoloLacoste/r6-discord-bot#readme",
+  "bugs": {
+    "url": "https://github.com/PoloLacoste/r6-discord-bot/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PoloLacoste/r6-discord-bot.git"
   },
-  "author": "PoloLacoste",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/PoloLacoste/r6-discord-bot/issues"
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "tsc && node dist/index.js",
+    "build": "tsc"
   },
-  "homepage": "https://github.com/PoloLacoste/r6-discord-bot#readme",
   "devDependencies": {
     "@types/node": "^17.0.31",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
@@ -29,9 +29,6 @@
     "typescript": "^4.6.4"
   },
   "dependencies": {
-    "@discordjs/builders": "^0.11.0",
-    "@discordjs/rest": "^0.4.1",
-    "discord-api-types": "^0.26.1",
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.0",
     "humanize-duration": "^3.27.1",
