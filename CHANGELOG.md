@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.7.2 - 01/09/2023
+
+Bump dependencies
+Migrate to pnpm
+Upgrade node docker version
+
 ## 1.7.1 - 23/08/2022
 
 - Update packages to newest versions (r6-api-caching, discord.js)

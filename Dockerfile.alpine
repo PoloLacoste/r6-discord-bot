@@ -1,4 +1,4 @@
-FROM node:16.15.0-alpine as builder
+FROM node:20.5-alpine as builder
 
 WORKDIR /usr/src/app
 
@@ -14,7 +14,7 @@ RUN npm install -g pkg
 
 RUN pkg --target alpine --output app/r6-discord-bot dist/index.js
 
-FROM alpine:3.13 as production
+FROM alpine:3.18 as production
 
 WORKDIR /usr/src/app
 

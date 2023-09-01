@@ -15,16 +15,20 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setTitle('R6 Discord bot')
       .setURL('https://github.com/PoloLacoste/r6-discord-bot')
-      .setDescription('R6 Discord bot is a simple bot used to display some analytics about your Rainbow Six Siege account')
+      .setDescription(
+        'R6 Discord bot is a simple bot used to display some analytics about your Rainbow Six Siege account'
+      )
       .addFields(
         {
           name: 'Commands',
-          value: 'Full list of commands is available [here](https://github.com/PoloLacoste/r6-discord-bot#%EF%B8%8F-bot-commands)',
+          value:
+            'Full list of commands is available [here](https://github.com/PoloLacoste/r6-discord-bot#%EF%B8%8F-bot-commands)'
         },
         {
           name: 'Support',
-          value: '[Click here](https://github.com/PoloLacoste/r6-discord-bot) to discuss with the creator of the bot',
-        },
+          value:
+            '[Click here](https://github.com/PoloLacoste/r6-discord-bot) to discuss with the creator of the bot'
+        }
       )
       .setTimestamp()
       .setFooter({
@@ -32,9 +36,7 @@ module.exports = {
       })
 
     interaction.reply({
-      embeds: [
-        embed
-      ]
+      embeds: [embed]
     })
   }
 }

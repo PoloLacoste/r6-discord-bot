@@ -1,22 +1,21 @@
 import 'reflect-metadata'
-import fs = require('fs')
-import path = require('path')
 import { container } from 'tsyringe'
 import { Logger } from 'tslog'
-import { Client, GatewayIntentBits, Collection } from 'discord.js'
+import { Client, GatewayIntentBits, Collection, Routes } from 'discord.js'
 import { REST } from '@discordjs/rest'
-import { Routes } from 'discord-api-types/v9'
 import { exit } from 'process'
 
 import { initServices } from './services/services'
+import * as fs from 'fs'
+import * as path from 'path'
+
+import 'dotenv/config'
 
 declare module 'discord.js' {
   export interface Client {
     commands: Collection<unknown, any>
   }
 }
-
-require('dotenv').config()
 
 async function start () {
   await initServices()
@@ -28,7 +27,9 @@ async function start () {
 
   logger.info('Registering commands...')
 
-  const commandFiles = fs.readdirSync(path.join(__dirname, 'commands')).filter(file => file.endsWith('.js'))
+  const commandFiles = fs
+    .readdirSync(path.join(__dirname, 'commands'))
+    .filter((file) => file.endsWith('.js'))
   for (const file of commandFiles) {
     const command = require(path.join(__dirname, 'commands', file))
     logger.info(`Registered command: ${command.data.name}`)
@@ -39,7 +40,13 @@ async function start () {
   const rest = new REST({ version: '10' }).setToken(process.env.TOKEN)
 
   try {
-    await rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID), { body: commands })
+    await rest.put(
+      Routes.applicationGuildCommands(
+        process.env.CLIENT_ID,
+        process.env.GUILD_ID
+      ),
+      { body: commands }
+    )
     logger.info('Successfully registered application commands !')
   } catch (e) {
     logger.error(`Failed to update application commands: ${e}`)
@@ -56,7 +63,7 @@ async function start () {
     exit(1)
   }
 
-  client.on('interactionCreate', async interaction => {
+  client.on('interactionCreate', async (interaction) => {
     if (!interaction.isChatInputCommand()) {
       return
     }

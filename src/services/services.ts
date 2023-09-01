@@ -5,8 +5,7 @@ import { Logger } from 'tslog'
 export async function initServices (): Promise<void> {
   container.registerInstance(Logger, new Logger({
     name: 'R6 discord bot',
-    displayFunctionName: false,
-    displayFilePath: 'hidden'
+    hideLogPositionForProduction: true
   }))
   container.registerInstance(CacheService, new CacheService(process.env.REDIS_URL))
   container.registerInstance(MongoDatabase, new MongoDatabase(process.env.MONGO_URL))
